@@ -1,1 +1,0 @@
-some simple project i've been doing while being on my coding journey
