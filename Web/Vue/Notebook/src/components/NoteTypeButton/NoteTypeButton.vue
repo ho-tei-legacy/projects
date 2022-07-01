@@ -45,14 +45,16 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     height: 40px;
-    width: 97vh;
+    width:auto;
     margin-top: 5px;
     padding-left: 20px;
+    margin-bottom: 10px;
     background-color: transparent;
-    background: #272626;
+    background: #1f1f1f;
 
     color: #ffffff;
     font-size: 18px;
+    text-align: left   ;
     justify-content: center;
 
     border-style: none;
@@ -78,7 +80,7 @@ const props = defineProps({
 .NoteTypeButton:active {
     cursor: default;
     transition: 0.1s;
-    font-size: 17px;
+    font-size: 17.5px;
 }
 
 </style>
