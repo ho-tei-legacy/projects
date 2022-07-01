@@ -29,7 +29,7 @@ const props = defineProps({
 .selectedSpan {
     border-left-style: solid;
     border-color: #ffffff;
-    border-width: 2px;
+    border-width: 1px;
     padding-left: 10px;
 }
 
@@ -49,7 +49,7 @@ const props = defineProps({
     margin-top: 5px;
     padding-left: 20px;
     background-color: transparent;
-    background: #1f1e1e;
+    background: #272626;
 
     color: #ffffff;
     font-size: 18px;
@@ -69,7 +69,7 @@ const props = defineProps({
     transition: 0.3s;
     border-left-style: solid;
     border-color: #ffffff;
-    border-width: 2px;
+    border-width: 1px;
     padding-left: 10px;
 
     

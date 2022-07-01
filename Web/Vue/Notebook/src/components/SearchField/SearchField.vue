@@ -20,6 +20,7 @@
     width: 280px;
     border-style: none;
     border-bottom-style: solid;
+    border-bottom-color: #1f1f1f;
 }
 
 .SearchField:focus {

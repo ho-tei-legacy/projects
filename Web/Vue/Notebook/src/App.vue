@@ -6,6 +6,8 @@ import NoteTypeButton from './components/NoteTypeButton/NoteTypeButton.vue';
 import BurgerMenuButton from './components/BurgerMenuButton/BurgerMenuButton.vue';
 import NotizListItem from './components/NotizListItem/NotizListItem.vue';
 import SearchField from './components/SearchField/SearchField.vue';
+import SearchField1 from './components/SearchField/SearchField.vue';
+import NotizListItem1 from './components/NotizListItem/NotizListItem.vue';
 library.add(faMagnifyingGlass)
 
 </script>
@@ -15,26 +17,23 @@ library.add(faMagnifyingGlass)
   <header>
    
   </header>
-  <div class="all">
-  <div class="noteTypesTab">
-    
-    <div class="burgerButtonDiv">
-      <BurgerMenuButton></BurgerMenuButton>
+  <div class="sidebar">
+    <div class="burgermenu">
+      <BurgerMenuButton isSelected=true />
     </div>
 
-    <div class="noteTypes">
-      <NoteTypeButton id=0 displayName="Test NoteTypeButton" isSelected=false></NoteTypeButton>
-      <NoteTypeButton id=1 displayName="Another test button" isSelected=false></NoteTypeButton>
+    <div class="notetypes">
+      <NoteTypeButton id="0" displayName="test" isSelected="false" />
     </div>
+  </div>
 
-  </div>
-  </div>
-  <div class="noteLists">
-    <div class="searchBar">
-      <SearchField></SearchField>
+  <div class="searchbar">
+    <SearchField />
+
+    <div class="NoteEntries">
+      <NotizListItem title="Test" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, " isSelected=false />
+      <NotizListItem title="testo" content="lorem ipsum another testo" isSelected="false" />  
     </div>
-    <NotizListItem title="Test" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna" isSelected=false></NotizListItem>
-    <NotizListItem title="Lorem Ipsum" content="insert lorem ipsum text here but without the actual lorem ipsum" isSelected=false></NotizListItem>
   </div>
 </template>
 
@@ -42,40 +41,43 @@ library.add(faMagnifyingGlass)
 <style>
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
-.all {
+.sidebar {
   display: flex;
-  position: absolute;
-}
-
-.burgerButtonDiv {
-  margin-bottom: 40px ;
-}
-
-.noteTypesTab {
-  background-color: #1f1e1e;
-  
-  width: 250px;
+  float: left;
+  flex-direction: column;
+  background-color: #1f1f1f;
+  width: 35vh;
   height: 100vh;
-  overflow:hidden;
 }
 
-.noteLists {
-  position: relative;
-  margin-left: 250px;
-  width: 340px;
-  height: 100vh;
-
-  border-right-style: solid;
+.burgermenu {
+  margin-bottom: 20px;
 }
 
-.searchBar {
-  padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+.notetypes {
+  display: flex;
 }
+
+.searchbar {
+  display: flex;
+  float: left;
+  flex-direction: column;
+  padding-top: 20px;
+  margin-left: 20px;
+
+  border-right: solid;
+  border-right-color: #1f1f1f;
+  height: 98vh;
+}
+
+.NoteEntries {
+  margin-top: 20px;
+  margin-left: -20px
+}
+
 
 </style>
