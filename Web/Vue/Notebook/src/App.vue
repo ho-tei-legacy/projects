@@ -22,9 +22,9 @@ library.add(faMagnifyingGlass)
       <BurgerMenuButton isSelected=true />
     </div>
 
-    <div class="notetypes">
-      <NoteTypeButton id="0" displayName="test" isSelected="false" />
-    </div>
+    <NoteTypeButton id="0" displayName="Personal" isSelected="false" />
+    <NoteTypeButton id="1" displayName="Work" isSelected="false" />
+    <NoteTypeButton id="2" displayName="Misc." isSelected="false" />
   </div>
 
   <div class="searchbar">
@@ -33,6 +33,16 @@ library.add(faMagnifyingGlass)
     <div class="NoteEntries">
       <NotizListItem title="Test" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, " isSelected=false />
       <NotizListItem title="testo" content="lorem ipsum another testo" isSelected="false" />  
+    </div>
+  </div>
+
+  <div class="editorDiv">
+    <div class="richtext">
+      <p class="placeholderRichText">RichText Coming soonTM</p>
+    </div>
+
+    <div class="editor">
+      <input class="inputEditor" type="text" />
     </div>
   </div>
 </template>
@@ -79,5 +89,23 @@ library.add(faMagnifyingGlass)
   margin-left: -20px
 }
 
+.richtext {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  float:left;
+  border-bottom-style: solid;
+  border-bottom-color: #1f1f1f;
+  width: 107vh;
+  height: 8vh;
+}
 
+.placeholderRichText {
+ font-size: 30px;
+}
+
+.editorDiv {
+  display: flex;
+}
 </style>
