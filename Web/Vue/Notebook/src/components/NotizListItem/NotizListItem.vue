@@ -33,7 +33,7 @@ const props = defineProps({
 .NotizListItemDiv {
     font-family: 'Times New Roman', Times, serif;
     height: 100px;
-    color: #272626;
+    color: #1f1f1f;
     background-color: white;
     transition: 0.3s;
     width: 340px;
@@ -60,7 +60,7 @@ const props = defineProps({
 
 .NotizListItemDiv:hover {
     cursor: pointer;
-    background-color: #272626;
+    background-color: #1f1f1f;
 }
 
 .NotizListItemDiv:hover > #ListItem {
@@ -69,7 +69,7 @@ const props = defineProps({
 }
 
 .NotizListItemDiv:hover > #ListContent {
-    background-image: linear-gradient(90deg, #b5b5b5 70%, rgb(39,38,38));
+    background-image: linear-gradient(90deg, #b5b5b5 70%, rgb(69,67,67));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -82,7 +82,7 @@ const props = defineProps({
 .NotizListItemDivSelected {
     height: 100px;
     color: white;
-    background-color: #272626;
+    background-color: #1f1f1f;
     transition: 0.3s;
 }
 
@@ -94,7 +94,7 @@ const props = defineProps({
 }
 
 .NotizListItemDivSelected #ListContent {
-    background-image: linear-gradient(90deg, #b5b5b5 70%, rgb(39,38,38));
+    background-image: linear-gradient(90deg, #b5b5b5 70%, rgb(69,67,67));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -6,9 +6,33 @@ import NoteTypeButton from './components/NoteTypeButton/NoteTypeButton.vue';
 import BurgerMenuButton from './components/BurgerMenuButton/BurgerMenuButton.vue';
 import NotizListItem from './components/NotizListItem/NotizListItem.vue';
 import SearchField from './components/SearchField/SearchField.vue';
-import SearchField1 from './components/SearchField/SearchField.vue';
-import NotizListItem1 from './components/NotizListItem/NotizListItem.vue';
+import AddNoteButton from './components/AddNoteButton/AddNoteButton.vue';
 library.add(faMagnifyingGlass)
+
+const NoteTypes = {
+  [0]: {
+    id: 0,
+    displayName: "Personal",
+    selected: true
+  },
+  [1]: {
+    id: 1,
+    displayName: "Work",
+    selected: false,
+  },
+  [2]: {
+    id: 2,
+    displayName: "Misc.",
+    selected: false,
+  }
+}
+
+const selectedNoteType = 0
+const selectedList = "Test"
+
+function selectNoteType(id) {
+  console.log(id)
+}
 
 </script>
 
@@ -22,9 +46,9 @@ library.add(faMagnifyingGlass)
       <BurgerMenuButton isSelected=true />
     </div>
 
-    <NoteTypeButton id="0" displayName="Personal" isSelected="false" />
-    <NoteTypeButton id="1" displayName="Work" isSelected="false" />
-    <NoteTypeButton id="2" displayName="Misc." isSelected="false" />
+    <NoteTypeButton v-for="notes in NoteTypes" @click="selectNoteType(notes.id)" id="{{notes.id}}" displayName="{{`${notes.displayName}`}}" isSelected={{notes.selected}} />
+    <!--<NoteTypeButton @click="selectNoteType(1)" id="1" displayName="Work" isSelected="false" />-->
+    <!--<NoteTypeButton @click="selectNoteType(2)" id="2" displayName="Misc." isSelected="false" />-->
   </div>
 
   <div class="searchbar">
@@ -34,16 +58,18 @@ library.add(faMagnifyingGlass)
       <NotizListItem title="Test" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, " isSelected=false />
       <NotizListItem title="testo" content="lorem ipsum another testo" isSelected="false" />  
     </div>
+
+
   </div>
 
-  <div class="editorDiv">
+  <div class="richTextDiv">
     <div class="richtext">
       <p class="placeholderRichText">RichText Coming soonTM</p>
     </div>
+  </div>
 
-    <div class="editor">
-      <input class="inputEditor" type="text" />
-    </div>
+  <div class="editorDiv">
+    <textarea class="editor" >aa</textarea>
   </div>
 </template>
 
@@ -51,6 +77,7 @@ library.add(faMagnifyingGlass)
 <style>
 
 * {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin: 0;
   padding: 0;
 }
@@ -60,7 +87,7 @@ library.add(faMagnifyingGlass)
   float: left;
   flex-direction: column;
   background-color: #1f1f1f;
-  width: 35vh;
+  width: 15vw;
   height: 100vh;
 }
 
@@ -97,7 +124,7 @@ library.add(faMagnifyingGlass)
   float:left;
   border-bottom-style: solid;
   border-bottom-color: #1f1f1f;
-  width: 107vh;
+  width: 100vw;
   height: 8vh;
 }
 
@@ -105,7 +132,18 @@ library.add(faMagnifyingGlass)
  font-size: 30px;
 }
 
-.editorDiv {
+.richTextDiv {
   display: flex;
 }
+
+.editor {
+  color: #1f1f1f;
+  height: 86.23vh;
+  width: 64.3vw;
+  padding-top: 50px;
+  padding-left: 50px;
+  font-size: 16px;
+  resize: none;
+}
+
 </style>
