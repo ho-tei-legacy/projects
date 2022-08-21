@@ -9,7 +9,7 @@ const props = defineProps({
         required: true
     },
     isSelected: {
-        type: String,
+        type: Boolean,
         required: true
     }
 })
@@ -18,7 +18,7 @@ const props = defineProps({
 
 <template>
     <button class="NoteTypeButton">
-        <span v-if="props.isSelected === 'true'" class="selectedSpan">{{displayName}}</span>
+        <span v-if="props.isSelected === true" class="selectedSpan">{{displayName}}</span>
         <span v-else class="NoteTypeSpan">{{ displayName }}</span>
     </button>
 </template>
