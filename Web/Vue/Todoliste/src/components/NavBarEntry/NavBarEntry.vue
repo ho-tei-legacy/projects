@@ -16,14 +16,31 @@
 </script>
 
 <template>
-    <button id="navBarEntry">
-      <span>{{ displayName }}</span>
+    <button class="navBarEntry">
+      <span v-if="$props.isSelected === 'true'" class="selectedSpan">{{displayName}}</span>
+      <span v-else class="navBarEntrySpan">{{ displayName }}</span>
     </button>
 </template>
 
 <style>
 
-#navBarEntry {
+.selectedSpan {
+    transition: 0.3s;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-color: #f9f9f9;
+    padding-left: 8px;
+}
+
+.navBarEntrySpan {
+    border-left-style: none;
+    border-color: #ffffff;
+    border-width: 0px;
+    padding-left: 0px;
+    transition: 0.3s;
+}
+
+.navBarEntry {
     height: 30px;
     width: 28.7vh;
     padding-left: 8px;
@@ -34,15 +51,15 @@
     text-align: left;
     font-size: 14px;
 
-    transition: 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 
-#navBarEntry:hover {
+.navBarEntry:hover {
     background-color: #363636;
 }
 
-#navBarEntry:hover > span {
+.navBarEntry:hover > .navBarEntrySpan {
     transition: 0.3s;
     border-left-style: solid;
     border-left-width: 1px;
@@ -50,16 +67,10 @@
     padding-left: 8px;
 }
 
-#navBarEntry:active {
-    transition: 1.5s;
+.navBarEntry:active {
+    cursor: default;
+    transition: 0.1s;
     font-size: 13px;
-}
-
-#navBarEntrySelected span {
-    padding-left: 8px;
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-color: #f9f9f9;
 }
 
 </style>
