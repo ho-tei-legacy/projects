@@ -4,16 +4,12 @@ from random import randint
 def getRandNum():
     return randint(0,6)
 
-def rollDice():
-    userinput = input("Would you like to roll the dice? Y/N:")
+def rollDice(reroll):
+    defaultMsg = "" if reroll else "Would you like to roll the dice? Y/N: \n"
+    userinput = input(defaultMsg)
     if userinput.lower() == "y":
         print("You roled a",getRandNum())
-        reRollDice()
+        print("Would you like to reroll the dice? Y/N:")
+        rollDice(True)
 
-def reRollDice():
-    userinput = input("Would you like to roll the dice again? Y/N:")
-    if userinput.lower() == "y":
-        print("You rolled a",getRandNum())
-        reRollDice();
-
-rollDice();
+rollDice(False);
