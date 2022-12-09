@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/data/database.dart';
 import 'package:todo_list/util/my_button.dart';
 
-class DialogBox extends StatelessWidget {
-  // ignore: prefer_typing_uninitialized_variables
-  final controller; // required to be able to access information in home page
+class EditTaskDialogBox extends StatelessWidget {
   ToDoDataBase db = ToDoDataBase();
+  final controller;
   VoidCallback onSave;
   VoidCallback onCancel;
-
-  DialogBox(
+  EditTaskDialogBox(
       {super.key,
       required this.controller,
       required this.onSave,
@@ -32,17 +30,18 @@ class DialogBox extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12, color: db.themes[db.selectedTheme][3]),
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: db.themes[db.selectedTheme][4])),
+                      focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: db.themes[db.selectedTheme][4])),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: db.themes[db.selectedTheme][4]),
-                    ),
-                    hintText: "Add a new task",
-                    hintStyle: TextStyle(
-                        fontSize: 12, color: db.themes[db.selectedTheme][3]),
-                  ),
+                            BorderSide(color: db.themes[db.selectedTheme][4]),
+                      ),
+                      hintText: "Enter a new name",
+                      hintStyle: TextStyle(
+                        color: db.themes[db.selectedTheme][3],
+                        fontSize: 12,
+                      )),
                 ),
 
                 // buttons -> save + cancel
