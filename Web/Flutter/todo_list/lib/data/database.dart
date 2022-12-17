@@ -3,6 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class ToDoDataBase {
   List toDoList = [];
+  List defaultList = [
+    [
+      "Do my workout", // ToDo Name
+      false, // isCompleted
+      false, // isPinned
+    ]
+  ];
   //             0          1        2      3     4         5           6
   // Format: [primary, background, entry, text, border, checkMark, checkBorder]
   List themes = [
@@ -28,14 +35,11 @@ class ToDoDataBase {
   int selectedTheme = 0;
 
   // reference box
-  final _myBox = Hive.box('mybox');
+  final _myBox = Hive.box("debugboxthree");
 
   // 1st overall startup
   void createInitialData() {
-    toDoList = [
-      ["Make Tutorial", false],
-      ["Do Exercise", false],
-    ];
+    toDoList = defaultList;
   }
 
   // load data from db

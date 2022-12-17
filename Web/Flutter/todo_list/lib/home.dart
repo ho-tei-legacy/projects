@@ -1,8 +1,13 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_list/data/database.dart';
 import 'package:todo_list/util/dialog_box.dart';
 import 'package:todo_list/util/edit_task_dialog.dart';
+import 'package:todo_list/util/my_button.dart';
+import 'package:todo_list/util/pin_handler.dart';
 
 import 'util/todo_tile.dart';
 
@@ -15,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // reference hive box
-  final _myBox = Hive.box('mybox');
+  final _myBox = Hive.box('debugboxthree');
   ToDoDataBase db = ToDoDataBase();
 
   @override
@@ -45,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   // save new task
   void saveNewTask() {
     setState(() {
-      db.toDoList.add([_controller.text, false]);
+      db.toDoList.add([_controller.text, false, false]);
       _controller.clear();
     });
     Navigator.of(context).pop();
@@ -75,11 +80,125 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
-  void deleteTask(int index) {
-    setState(() {
-      db.toDoList.removeAt(index);
-    });
-    db.updateDataBase();
+  int getIndexOfFirstPinned() {
+    if (!db.toDoList[0][2]) return -1; // none are pinned
+    int index = 0;
+    int cur = 0;
+    while (index == 0 && db.toDoList.length - 1 >= index) {
+      if (db.toDoList[cur][2]) {
+        index = cur;
+        break;
+      }
+      cur++;
+    }
+    return index;
+  }
+
+  int getIndexOfLastPinned() {
+    if (!db.toDoList[0][2]) return -1; // none are pinned
+    int index = 0;
+    int cur = 0;
+    while (index == 0 && db.toDoList.length - 1 >= index) {
+      if (db.toDoList[cur][2]) {
+        index = cur;
+      }
+      cur++;
+    }
+    return index;
+  }
+
+  int getIndexOfFirstUnpinned() {
+    if (!db.toDoList[0][2]) return 0; // first is already unpinned
+    int index = 1;
+    while (db.toDoList.length + 1 >= index) {
+      if (!db.toDoList[index][2]) {
+        break;
+      }
+      index++;
+    }
+    return index;
+  }
+
+  void pinTile(int index) {
+    if (db.toDoList[index][2]) {
+      var toUnpin = db.toDoList[index];
+      int firstUnpinned = getIndexOfFirstUnpinned();
+      setState(() {
+        toUnpin[2] = false;
+
+        db.toDoList.insert(firstUnpinned, toUnpin);
+        db.toDoList.remove(index);
+      });
+    } else {
+      int lastPinned =
+          getIndexOfLastPinned() == -1 ? 0 : getIndexOfLastPinned();
+      var toPin = db.toDoList[index];
+
+      setState(() {
+        toPin[2] = true;
+
+        db.toDoList.insert(lastPinned, toPin);
+        db.toDoList.removeAt(index);
+      });
+    }
+  }
+
+  void deleteTask(int index, {bool recall = false}) {
+    if ((db.toDoList[index][1] == false) && (recall == false)) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: db.themes[db.selectedTheme][1],
+              content: SizedBox(
+                height: 120,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: db.themes[db.selectedTheme][4])),
+                      child: Text(
+                        "Are you sure you want to delete this todo entry? You haven't completed it yet!",
+                        style: TextStyle(
+                          color: db.themes[db.selectedTheme][3],
+                          fontSize: 10.5,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        MyButton(
+                          text: "Yes",
+                          onPressed: () => {
+                            deleteTask(index, recall: true),
+                            Navigator.of(context).pop()
+                          },
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        MyButton(
+                          text: "No",
+                          onPressed: () => Navigator.of(context).pop(),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    } else {
+      setState(() {
+        db.toDoList.removeAt(index);
+      });
+      db.updateDataBase();
+    }
   }
 
   void editTask(int index) {
@@ -134,6 +253,7 @@ class _HomePageState extends State<HomePage> {
               onChanged: (value) => checkBoxChanged(value, index),
               deleteFunction: (context) => deleteTask(index),
               editFunction: (context) => editTask(index),
+              pinFunction: (context) => pinTile(index),
             );
           },
         ));
