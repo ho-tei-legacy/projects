@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:todo_list/data/database.dart';
-import 'package:todo_list/util/pin_handler.dart';
 
 class ToDoTile extends StatelessWidget {
   final String taskName;

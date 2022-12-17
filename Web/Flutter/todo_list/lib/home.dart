@@ -7,7 +7,6 @@ import 'package:todo_list/data/database.dart';
 import 'package:todo_list/util/dialog_box.dart';
 import 'package:todo_list/util/edit_task_dialog.dart';
 import 'package:todo_list/util/my_button.dart';
-import 'package:todo_list/util/pin_handler.dart';
 
 import 'util/todo_tile.dart';
 
