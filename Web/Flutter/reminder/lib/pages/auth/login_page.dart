@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:reminder/pages/auth/forgot_password.dart';
-import 'package:reminder/pages/database/database.dart';
 import 'package:reminder/pages/templates/gesturebutton.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,7 +23,6 @@ class _LoginPageState extends State<LoginPage> {
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
-    //DatabaseHandler().loadUserData();
   }
 
   @override
